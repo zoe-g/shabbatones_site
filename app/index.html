@@ -8,6 +8,7 @@
     <title>Penn Shabbatones</title>
 
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="css/custom.css" rel="stylesheet" type="text/css">
     <link href="img/shield.ico" rel="shortcut icon" type="image/x-icon">
   </head>
@@ -61,7 +62,10 @@
 
     <!-- members -->
     <section id="members" class="container-fluid">
-      members
+      <div class="row">
+        <current-members></current-members>
+        <alumni></alumni>
+      </div>
     </section>
 
     <!-- about -->
@@ -132,5 +136,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.13/angular.min.js"></script>
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="js/app.js" type="text/javascript" ></script>
+    <script src="js/filters.js" type="text/javascript" ></script>
   </body>
 </html>

@@ -1,0 +1,40 @@
+<div class="col-xs-12 col-sm-6 alumni-table">
+  <h3>Alumni</h3>
+  <table class="table table-hover table-condensed table-responsive">
+    <thead>
+      <td id="name-col" ng-click="column = 'gsx$name.$t' ; reverse = !reverse"><h4>Name <i class="fa fa-sort"></i></h4></td>
+      <td id="school-col" ng-click="column = 'gsx$school.$t' ; reverse = !reverse"><h4>School <i class="fa fa-sort"></i></h4></td>
+      <td id="year-col" ng-click="column = 'gsx$gradyear.$t' ; reverse = !reverse"><h4>Year <i class="fa fa-sort"></i></h4></td>
+      <td id="part-col" ng-click="column = 'gsx$voicepart.$t' ; reverse = !reverse"><h4>Part <i class="fa fa-sort"></i></h4></td>
+    </thead>
+
+    <tbody>
+      <tr ng-repeat="alum in alumni.members | orderBy : column : reverse | pagination: currentPage * pageSize | limitTo : pageSize">
+        <td id="name-col">
+          {{alum.gsx$name.$t}}
+          <span ng-show="alum.gsx$musicaldirector.$t">&clubs;</span>
+          <span ng-show="alum.gsx$president.$t">&spades;</span>
+          <span ng-show="alum.gsx$cofounder.$t">&hearts;</span>
+          <span ng-show="alum.gsx$cdeditorproducer.$t">&diams;</span>
+        </td>
+        <td id="school-col">{{alum.gsx$school.$t}}</td>
+        <td id="year-col">{{alum.gsx$gradyear.$t}}</td>
+        <td id="part-col">{{alum.gsx$voicepart.$t}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <span class="btn-group btn-group-xs">
+    <button type="button" class="btn btn-default" ng-click="column = 'gsx$musicaldirector.$t' ; reverse = true">&clubs; Musical Director</button>
+    <button type="button" class="btn btn-default" ng-click="column = 'gsx$president.$t' ; reverse = true">&spades; President</button>
+    <button type="button" class="btn btn-default" ng-click="column = 'gsx$cofounder.$t' ; reverse = true">&hearts; Co-Founder</button>
+    <button type="button" class="btn btn-default" ng-click="column = 'gsx$cdeditorproducer.$t' ; reverse = true">&diams; CD Producer</button>
+  </span><br>
+
+  <ul class="pagination">
+    <li class="ng-class: {disabled: currentPage <= 0};" ng-click="currentPage=currentPage-1"><a href>&laquo;</a></li>
+    <li><a href>Page {{currentPage+1}} of {{ numberPages() }}</a></li>
+    <li class="ng-class: {disabled: currentPage >= numberPages()-1}" ng-click="currentPage=currentPage+1"><a href>&raquo;</a></li>
+  </ul>
+  
+</div>

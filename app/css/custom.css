@@ -23,6 +23,10 @@ h3 {
   color: #95001a;
 }
 
+h4 {
+  color: #01256e;
+}
+
 .navbar {
   border: 0;
   overflow-x: visible;
@@ -60,6 +64,26 @@ section {
 
 #footnote {
   text-align: center;
+}
+
+#name-col, #school-col {
+  width: 120px;
+}
+
+#part-col, #year-col {
+  width: 50px;
+}
+
+.alumni-table {
+  text-align: center;
+}
+
+.alumni-table table, h3 {
+  text-align: left;
+}
+
+.alumni-table .btn-group .btn {
+  color: #01256e;
 }
 
 .navbar-fixed-bottom {
