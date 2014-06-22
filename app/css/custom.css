@@ -44,6 +44,27 @@ section {
 
 #music {
   background-color: #f1f1f1;
+  text-align: center;
+}
+
+#music .cover-art-grid {
+  width: 75%;
+  min-width: 130px;
+  margin-top: 20px;
+}
+
+#music .album-details .cover-art-details {
+  width: 80%;
+  min-width: 130px;
+  max-width: 390px;
+  margin-top: 20px;
+}
+
+#music button {
+  width: 70%;
+  min-width: 130px;
+  max-width: 350px;
+  margin-top: 5px;
 }
 
 #events {
@@ -58,32 +79,32 @@ section {
   background-color: #cac5bb;
 }
 
+#members #name-col, #school-col {
+  width: 120px;
+}
+
+#members #part-col, #year-col {
+  width: 50px;
+}
+
+#members .alumni-table {
+  text-align: center;
+}
+
+#members .alumni-table table, h3 {
+  text-align: left;
+}
+
+#members .alumni-table .btn-group .btn {
+  color: #01256e;
+}
+
 #about {
   background-color: #f1f1f1;
 }
 
-#footnote {
+#about #footnote {
   text-align: center;
-}
-
-#name-col, #school-col {
-  width: 120px;
-}
-
-#part-col, #year-col {
-  width: 50px;
-}
-
-.alumni-table {
-  text-align: center;
-}
-
-.alumni-table table, h3 {
-  text-align: left;
-}
-
-.alumni-table .btn-group .btn {
-  color: #01256e;
 }
 
 .navbar-fixed-bottom {
