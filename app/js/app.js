@@ -1,5 +1,17 @@
-var app = angular.module('shabbatones', ['customFilters']);
+var app = angular.module('shabbatones', ['ngRoute', 'ngAnimate', 'customFilters']);
 
+  app.config(function($routeProvider, $locationProvider) {
+    $routeProvider
+    .when('/music', {
+      templateUrl: 'index.html',
+      controller: 'MainController'
+    })
+    .otherwise({
+      templateUrl: 'index.html',
+      controller: 'MainController'
+    });
+  });
+  
   app.directive('home', ['$http', function(){
     return {
       restrict: 'E',
@@ -12,6 +24,7 @@ var app = angular.module('shabbatones', ['customFilters']);
         $http.get(spreadsheet_url).success(function(data){
           carousel.features = data.feed.entry;
         });
+
 
         //not confirmed in this function is working properly
         isVideo = function(feature){
@@ -28,7 +41,7 @@ var app = angular.module('shabbatones', ['customFilters']);
     return {
       restrict: 'E',
       templateUrl: 'partials/music.html',
-      controller: function($scope, $http, $filter){
+      controller: function MusicController($scope, $http, $filter){
         var music = this;
         var spreadsheet_url = 'https://spreadsheets.google.com/feeds/list/140NStbyyUW95Kp5EjCQWjqh06kJNpF40aY-99gI5LMs/612845608/public/full?alt=json&orderby=releaseyear&reverse=true';
         music.albums = [];
@@ -45,7 +58,7 @@ var app = angular.module('shabbatones', ['customFilters']);
     return {
       restrict: 'E',
       templateUrl: 'partials/album.html',
-      controller: function($scope, $http, $filter){
+      controller: function AlbumController($scope, $http, $filter){
         var album = this;
         var spotify_url = 'https://api.spotify.com/v1/albums/'+ spotifyIDfromspreadsheet + '/tracks';
         album.tracks = [];
