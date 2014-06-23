@@ -35,7 +35,29 @@ h4 {
 section {
   overflow-x: hidden;
   min-height: 100vh;
-  padding: 50px 15px;
+  padding: 0px 15px 50px 15px;
+}
+
+.tab-down-white {
+  vertical-align: middle;
+  border-top: 3vw solid #f1f1f1;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  width: 10vw;
+  padding-bottom: 35px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tab-down-gray {
+  vertical-align: middle;
+  border-top: 3vw solid #cac5bb;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  width: 10vw;
+  padding-bottom: 35px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #home {
@@ -100,12 +122,28 @@ section {
   background-color: #cac5bb;
 }
 
-#members #name-col, #school-col {
-  width: 120px;
+#members .media-list .media-object {
+  width: 180px;
+  height: auto;
+  border: 1px solid #f1f1f1;
 }
 
-#members #part-col, #year-col {
-  width: 50px;
+#members .media:first-child {
+  margin-top: 15px;
+}
+
+#members .media-list .media-body {
+  max-height: 180px;
+}
+
+#members .media-list .fa, #members .alumni-table thead .fa {
+  color: #95001a;
+  font-size: 16px;
+  margin-right: 4px;
+}
+
+#members .media-list .fa-graduation-cap, #members .media-list .fa-microphone {
+  margin-left: 16px;
 }
 
 #members .alumni-table {
@@ -118,6 +156,21 @@ section {
 
 #members .alumni-table .btn-group .btn {
   color: #01256e;
+}
+
+#members .alumni-table thead .fa-sort {
+  color: #01256e;
+}
+
+#members .alumni-video {
+  margin-top: 105px;
+  padding: 0px;
+  text-align: center;
+}
+
+#members .alumni-video iframe {
+  width: 48vw;
+  height: 27vw;
 }
 
 #about {

@@ -62,6 +62,23 @@ var app = angular.module('shabbatones', ['customFilters']);
     };
   }]);
 
+  app.directive('members', ['$http', function(){
+    return {
+      restrict: 'E',
+      templateUrl: 'partials/members.html',
+      controller: function($scope, $http, $filter){
+        var members = this;
+        var spreadsheet_url = 'https://spreadsheets.google.com/feeds/list/140NStbyyUW95Kp5EjCQWjqh06kJNpF40aY-99gI5LMs/1478583169/public/full?alt=json&orderby=gradyear';
+        members.list = [];
+
+        $http.get(spreadsheet_url).success(function(data){
+          members.list = data.feed.entry;
+        });
+      },
+      controllerAs: 'members'
+    };
+  }]);
+
   app.directive('alumni', ['$http', function(){
     return {
       restrict: 'E',
