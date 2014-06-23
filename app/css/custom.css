@@ -42,6 +42,27 @@ section {
   background-color: #cac5bb;
 }
 
+.carousel {
+  margin: 30px;
+}
+
+.carousel .fa {
+  color: #01256e;
+}
+
+.carousel-control.right {
+  background-image: none;
+}
+
+.carousel-control.left {
+  background-image: none;
+}
+
+#title {
+  color: #95001a;
+  text-align: center;
+}
+
 #music {
   background-color: #f1f1f1;
   text-align: center;
@@ -101,6 +122,10 @@ section {
 
 #about {
   background-color: #f1f1f1;
+}
+
+#about button {
+  margin-bottom: 5px;
 }
 
 #about #footnote {

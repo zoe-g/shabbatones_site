@@ -1,3 +1,5 @@
+<!-- INCOMPLETE // USES MOSTLY SAMPLE HARD CODE -->
+
 <div class="col-xs-12 col-sm-6 album-details">
 
   <img class="img-rounded cover-art-details" src="img/album_covers/honey_and_hot_sauce.jpg" /><br>
@@ -10,11 +12,23 @@
   <a href="https://itunes.apple.com/us/cd/{{cd.gsx$itunesname.$t}}/{{cd.gsx$itunesid.$t}}" target="itunes_store">
     <button type="button" class="btn btn-success"><img src="img/icons/apple-sm.png" /> Download</button></a>
 
+  <!-- Listen on Spotify -->
+  <a href="spotify:album:{{cd.gsx$spotifyid.$t}}">
+  <button type="button" class="btn btn-danger"><img src="img/icons/spotify-sm.png" /> Listen</button></a>
+
 </div>
 
-<!--put in song list that is hidden on mobile and tablet-->
+<div class="col-xs-12 col-sm-6 track-list">
 
-<div class="col-xs-12 col-sm-6">
-  <iframe src="https://embed.spotify.com/?uri=spotify:album:0hMgrz23VgOBUjGaGuIkRf&amp;theme=white" frameborder="0" allowtransparency="true"></iframe>
-  <!-- add width and height? 533 for all except shabbaholics (609) -->
+  <span ng-repeat="track in album.tracks">
+    <a ng-click="selected_preview = {{track.preview_url}}">{{track.number}}. {{track.name}}</a>
+  </span>
+
+  <!-- Audio Player for MP3 Previews -->
+  <audio controls>
+    <source src="selected_preview" type="audio/mpeg">
+      Unfortunately, your browser does not support HTML5 audio.
+  </audio>
+  <!--sub in preview url from API depending on what the user clicked on-->
+
 </div>

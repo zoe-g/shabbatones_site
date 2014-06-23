@@ -1,5 +1,29 @@
 var app = angular.module('shabbatones', ['customFilters']);
 
+  app.directive('home', ['$http', function(){
+    return {
+      restrict: 'E',
+      templateUrl: 'partials/home.html',
+      controller: function($scope, $http, $filter){
+        var carousel = this;
+        var spreadsheet_url = 'https://spreadsheets.google.com/feeds/list/140NStbyyUW95Kp5EjCQWjqh06kJNpF40aY-99gI5LMs/1276842353/public/full?alt=json';
+        carousel.features = [];
+
+        $http.get(spreadsheet_url).success(function(data){
+          carousel.features = data.feed.entry;
+        });
+
+        //not confirmed in this function is working properly
+        isVideo = function(feature){
+          if (feature.gsx$contenttype === 'video') {
+            return true;
+          };
+        };
+      },
+      controllerAs: 'home'
+    };
+  }]);
+
   app.directive('music', ['$http', function(){
     return {
       restrict: 'E',
@@ -22,15 +46,17 @@ var app = angular.module('shabbatones', ['customFilters']);
       restrict: 'E',
       templateUrl: 'partials/album.html',
       controller: function($scope, $http, $filter){
-        var albums = this;
-        var spreadsheet_url = 'https://spreadsheets.google.com/feeds/list/140NStbyyUW95Kp5EjCQWjqh06kJNpF40aY-99gI5LMs/612845608/public/full?alt=json&orderby=releaseyear&reverse=true';
-        albums.cd = [];
+        var album = this;
+        var spotify_url = 'https://api.spotify.com/v1/albums/'+ spotifyIDfromspreadsheet + '/tracks';
+        album.tracks = [];
 
-        $http.get(spreadsheet_url).success(function(data){
-          albums.cd = data.feed.entry;
+        $http.get(spotify_url).success(function(data){
+          album.tracks = data.items;
         });
 
-        cd = albums.cd[0]
+// TODO: identify one albums info from spreadsheet -- pass through url or var
+// TODO: load this page instead of the music page when it goes one level deep -- use routing?
+      
       },
       controllerAs: 'album'
     };
