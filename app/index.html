@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Penn Shabbatones</title>
+    <base href="/">
 
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
@@ -46,7 +47,7 @@
     <section id="music" class="container-fluid">
       <a href="#music"><div class="tab-down-gray"></div></a>
       <div class="row">
-        <music></music>
+        <div ng-view></div>
       </div>
     </section>
 
@@ -63,8 +64,18 @@
     <section id="members" class="container-fluid">
       <a href="#members"><div class="tab-down-white"></div></a>
       <div class="row">
-        <members></members>
-<!--         <alumni></alumni> -->
+
+      <ul class="nav nav-tabs nav-justified">
+        <li class="members-panel active"><a href ng-click="panel = 1"><h3>Members</h3></a></li>
+        <li class="alumni-panel"><a href ng-click="panel = 2"><h3>Alumni</h3></a></li>
+      </ul>
+
+      <div class="animate-switch-container" ng-switch on="panel">
+        <div class="animate-switch" ng-switch-when="1"><members></members></div>
+        <div class="animate-switch" ng-switch-when="2"><alumni></alumni></div>
+        <div class="animate-switch" ng-switch-default><members></members></div>
+      </div>
+
       </div>
     </section>
 

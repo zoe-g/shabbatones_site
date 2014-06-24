@@ -1,7 +1,14 @@
 var app = angular.module('shabbatones', ['ngRoute', 'ngAnimate', 'customFilters']);
 
-  app.config(function($routeProvider, $locationProvider) {
-    $routeProvider.otherwise('index.html');
+  app.config(function($routeProvider, $locationProvider){
+    $routeProvider
+      .when('/music/:album', {
+        templateUrl: 'partials/album.html',
+        controller: 'AlbumController'
+      })
+      .otherwise({
+        templateUrl: 'partials/music.html'
+      });
   });
 
   app.controller('MainController', ['$http', '$scope', function($http, $scope) {
@@ -30,11 +37,12 @@ var app = angular.module('shabbatones', ['ngRoute', 'ngAnimate', 'customFilters'
 
   }]);
 
-  // app.controller('AlbumController', function(){
-  //   $http.get(spotify_url).success(function(data){
-  //     album.tracks = data.items;
-  //   });
-  // });
+  app.controller('AlbumController', ['$routeParams', function($routeParams){
+    $scope.$routeParams = $routeParams;
+    // $http.get(spotify_url).success(function(data){
+    //   album.tracks = data.items;
+    // });
+  }]);
   
   app.controller('AlumniController', ['$scope', function($scope){
     $scope.currentPage = 0;
@@ -51,19 +59,19 @@ var app = angular.module('shabbatones', ['ngRoute', 'ngAnimate', 'customFilters'
     };
   });
 
-  app.directive('music', function(){
-    return {
-      restrict: 'E',
-      templateUrl: 'partials/music.html'
-    };
-  });
+  // app.directive('music', function(){
+  //   return {
+  //     restrict: 'E',
+  //     templateUrl: 'partials/music.html'
+  //   };
+  // });
 
-  app.directive('album', function(){
-    return {
-      restrict: 'E',
-      templateUrl: 'partials/album.html'
-    };
-  });
+  // app.directive('album', function(){
+  //   return {
+  //     restrict: 'E',
+  //     templateUrl: 'partials/album.html'
+  //   };
+  // });
 
   app.directive('members', function(){
     return {
@@ -85,3 +93,17 @@ var app = angular.module('shabbatones', ['ngRoute', 'ngAnimate', 'customFilters'
       templateUrl: 'partials/about.html',
     };
   });
+
+$( document ).ready(function() {
+
+  $('.members-panel').on('click', function(){
+    $('.members-panel').addClass('active');
+    $('.alumni-panel').removeClass('active');
+  });
+
+  $('.alumni-panel').on('click', function(){
+    $('.members-panel').removeClass('active');
+    $('.alumni-panel').addClass('active');
+  });
+
+});

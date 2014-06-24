@@ -122,6 +122,13 @@ section {
   background-color: #cac5bb;
 }
 
+#members .nav-tabs > li.active > a,
+#members .nav-tabs > li.active > a:hover,
+#members .nav-tabs > li.active > a:focus {
+  background-color: #cac5bb;
+  border-bottom-color: transparent;
+}
+
 #members .media-list .media-object {
   width: 180px;
   height: auto;
