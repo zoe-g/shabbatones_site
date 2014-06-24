@@ -5,15 +5,15 @@
   <img class="img-rounded cover-art-details" ng-src="img/album_covers/honey_and_hot_sauce.jpg" /><br>
 
   <!-- Purchase Path via PayPal -->
-  <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id={{cd.gsx$paypalid.$t}}" target="_top">
+  <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id={{cd.paypalid}}" target="_top">
     <button type="button" class="btn btn-warning"><img src="img/icons/paypal-sm.png" /> Buy Album</button></a>
 
   <!-- Direct to iTunes -->
-  <a href="https://itunes.apple.com/us/cd/{{cd.gsx$itunesname.$t}}/{{cd.gsx$itunesid.$t}}" target="itunes_store">
+  <a href="https://itunes.apple.com/us/cd/{{cd.itunesname}}/{{cd.itunesid}}" target="itunes_store">
     <button type="button" class="btn btn-success"><img src="img/icons/apple-sm.png" /> Download</button></a>
 
   <!-- Listen on Spotify -->
-  <a href="spotify:album:{{cd.gsx$spotifyid.$t}}">
+  <a href="spotify:album:{{cd.spotifyid}}">
   <button type="button" class="btn btn-danger"><img src="img/icons/spotify-sm.png" /> Listen</button></a>
 
 </div>

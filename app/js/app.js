@@ -1,119 +1,83 @@
 var app = angular.module('shabbatones', ['ngRoute', 'ngAnimate', 'customFilters']);
 
   app.config(function($routeProvider, $locationProvider) {
-    $routeProvider
-    .when('/music', {
-      templateUrl: 'index.html',
-      controller: 'MainController'
-    })
-    .otherwise({
-      templateUrl: 'index.html',
-      controller: 'MainController'
-    });
+    $routeProvider.otherwise('index.html');
   });
+
+  app.controller('MainController', ['$http', '$scope', function($http, $scope) {
+    worksheets = {gallery: 1276842353, events: 1335839826, members: 1478583169, alumni: 565451615, albums: 612845608, songs: 186394306, tour: 1237774977};
+
+    angular.forEach(worksheets, function(value,key){
+      var spreadsheetUrl = 'https://spreadsheets.google.com/feeds/list/140NStbyyUW95Kp5EjCQWjqh06kJNpF40aY-99gI5LMs/' + value + '/public/full?alt=json';
+      var rawData = [];
+      var parsedData = [];
+      $http.get(spreadsheetUrl).success(function(data){
+        rawData = data.feed.entry;
+        angular.forEach(rawData, function(record){
+          parsedRecord = {};
+          angular.forEach(record, function(v,k){
+            if (k.slice(0,4) === 'gsx$') {
+              newKey = k.slice(4);
+              newVal = v['$t'];
+              parsedRecord[newKey] = newVal;
+            }
+          });
+          parsedData.push(parsedRecord);
+        });
+        $scope[key] = parsedData;
+      });
+    });
+
+  }]);
+
+  // app.controller('AlbumController', function(){
+  //   $http.get(spotify_url).success(function(data){
+  //     album.tracks = data.items;
+  //   });
+  // });
   
-  app.directive('home', ['$http', function(){
-    return {
-      restrict: 'E',
-      templateUrl: 'partials/home.html',
-      controller: function($scope, $http, $filter){
-        var carousel = this;
-        var spreadsheet_url = 'https://spreadsheets.google.com/feeds/list/140NStbyyUW95Kp5EjCQWjqh06kJNpF40aY-99gI5LMs/1276842353/public/full?alt=json';
-        carousel.features = [];
-
-        $http.get(spreadsheet_url).success(function(data){
-          carousel.features = data.feed.entry;
-        });
-
-
-        //not confirmed in this function is working properly
-        isVideo = function(feature){
-          if (feature.gsx$contenttype === 'video') {
-            return true;
-          };
-        };
-      },
-      controllerAs: 'home'
+  app.controller('AlumniController', ['$scope', function($scope){
+    $scope.currentPage = 0;
+    $scope.pageSize = 15;
+    $scope.numberPages = function () {
+      return Math.ceil(alumni.members.length / $scope.pageSize);
     };
   }]);
 
-  app.directive('music', ['$http', function(){
+  app.directive('home', function(){
     return {
       restrict: 'E',
-      templateUrl: 'partials/music.html',
-      controller: function MusicController($scope, $http, $filter){
-        var music = this;
-        var spreadsheet_url = 'https://spreadsheets.google.com/feeds/list/140NStbyyUW95Kp5EjCQWjqh06kJNpF40aY-99gI5LMs/612845608/public/full?alt=json&orderby=releaseyear&reverse=true';
-        music.albums = [];
-
-        $http.get(spreadsheet_url).success(function(data){
-          music.albums = data.feed.entry;
-        });
-      },
-      controllerAs: 'music'
+      templateUrl: 'partials/home.html'
     };
-  }]);
+  });
 
-  app.directive('album', ['$http', function(){
+  app.directive('music', function(){
     return {
       restrict: 'E',
-      templateUrl: 'partials/album.html',
-      controller: function AlbumController($scope, $http, $filter){
-        var album = this;
-        var spotify_url = 'https://api.spotify.com/v1/albums/'+ spotifyIDfromspreadsheet + '/tracks';
-        album.tracks = [];
-
-        $http.get(spotify_url).success(function(data){
-          album.tracks = data.items;
-        });
-
-// TODO: identify one albums info from spreadsheet -- pass through url or var
-// TODO: load this page instead of the music page when it goes one level deep -- use routing?
-      
-      },
-      controllerAs: 'album'
+      templateUrl: 'partials/music.html'
     };
-  }]);
+  });
 
-  app.directive('members', ['$http', function(){
+  app.directive('album', function(){
     return {
       restrict: 'E',
-      templateUrl: 'partials/members.html',
-      controller: function($scope, $http, $filter){
-        var members = this;
-        var spreadsheet_url = 'https://spreadsheets.google.com/feeds/list/140NStbyyUW95Kp5EjCQWjqh06kJNpF40aY-99gI5LMs/1478583169/public/full?alt=json&orderby=gradyear';
-        members.list = [];
-
-        $http.get(spreadsheet_url).success(function(data){
-          members.list = data.feed.entry;
-        });
-      },
-      controllerAs: 'members'
+      templateUrl: 'partials/album.html'
     };
-  }]);
+  });
 
-  app.directive('alumni', ['$http', function(){
+  app.directive('members', function(){
     return {
       restrict: 'E',
-      templateUrl: 'partials/alumni.html',
-      controller: function($scope, $http, $filter){
-        var alumni = this;
-        var spreadsheet_url = 'https://spreadsheets.google.com/feeds/list/140NStbyyUW95Kp5EjCQWjqh06kJNpF40aY-99gI5LMs/565451615/public/full?alt=json&orderby=gradyear&reverse=true';
-        alumni.members = [];
-
-        $http.get(spreadsheet_url).success(function(data){
-          alumni.members = data.feed.entry;
-        });
-
-        $scope.currentPage = 0;
-        $scope.pageSize = 15;
-        $scope.numberPages = function () {
-          return Math.ceil(alumni.members.length / $scope.pageSize);
-        };
-      },
-      controllerAs: 'alumni'
+      templateUrl: 'partials/members.html'
     };
-  }]);
+  });
+
+  app.directive('alumni', function(){
+    return {
+      restrict: 'E',
+      templateUrl: 'partials/alumni.html'
+    };
+  });
 
   app.directive('about', function(){
     return {

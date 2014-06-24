@@ -2,17 +2,17 @@
   <h3>Members</h3>
   <ul class="media-list">
 
-    <li class="col-xs-12 col-md-6 media" ng-repeat="member in members.list">
-      <img class="media-object pull-left img-rounded" ng-src="{{member.gsx$photo.$t}}">
+    <li class="col-xs-12 col-md-6 media" ng-repeat="member in members | orderBy : 'gradyear' ">
+      <img class="media-object pull-left img-rounded" ng-src="{{member.photo}}">
 
       <div class="media-body">
-        <h4 class="media-heading"><i class="fa fa-chevron-right"></i>{{member.gsx$name.$t}}<i class="fa fa-microphone"></i>{{member.gsx$voicepart.$t}}<i class="fa fa-graduation-cap"></i>{{member.gsx$school.$t}} {{member.gsx$gradyear.$t}}</h4>
+        <h4 class="media-heading"><i class="fa fa-chevron-right"></i>{{member.name}}<i class="fa fa-microphone"></i>{{member.voicepart}}<i class="fa fa-graduation-cap"></i>{{member.school}} {{member.gradyear}}</h4>
 
-        <span ng-show="member.gsx$musicaldirector.$t"><h4><i class="fa fa-music"></i>Musical Director</h4></span>
-        <span ng-show="member.gsx$president.$t"><h4><i class="fa fa-magic"></i>President</h4></span>
+        <span ng-show="member.musicaldirector"><h4><i class="fa fa-music"></i>Musical Director</h4></span>
+        <span ng-show="member.president"><h4><i class="fa fa-magic"></i>President</h4></span>
 
 
-        <h5>{{member.gsx$bio.$t}}</h5>
+        <h5>{{member.bio}}</h5>
       </div>
 
     </li>
@@ -20,5 +20,3 @@
 
   </ul>
 </div>
-
-"Thu Jun 28 09:30:00 2014" 

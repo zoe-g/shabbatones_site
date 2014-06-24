@@ -12,9 +12,9 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
 
-    <div class="item" ng-repeat="item in carousel.features">
-      <img ng-show="!isVideo" ng-src="{{item.gsx$contentlink}}" /><br>
-      <iframe ng-show="isVideo" width="640" height="360" ng-src="//www.youtube.com/embed/{{item.gsx$contentlink}}?rel=0" frameborder="0" allowfullscreen></iframe>
+    <div class="item" ng-repeat="item in gallery">
+      <img ng-show="!isVideo" ng-src="{{item.contentlink}}" /><br>
+      <iframe ng-show="isVideo" width="640" height="360" ng-src="//www.youtube.com/embed/{{item.contentlink}}?rel=0" frameborder="0" allowfullscreen></iframe>
     </div>
 
   <!-- Controls -->
