@@ -14,10 +14,10 @@ var app = angular.module('shabbatones', ['ngRoute','ngAnimate','ngTouch', 'ui.bo
   });
 
   app.config(function($sceDelegateProvider){
-    $sceDelegateProvider.resourceUrlWhitelist(['self','http://www.youtube.com/embed/**']);
+    $sceDelegateProvider.resourceUrlWhitelist(['self','http://www.youtube.com/embed/**','https://p.scdn.co/mp3-preview/**']);
   });
 
-  app.controller('MainController', ['$http', '$scope', '$routeParams', '$filter', function($http, $scope, $routeParams, $filter) {
+  app.controller('MainController', ['$http', '$scope', '$routeParams', '$filter', '$document', function($http, $scope, $routeParams, $filter, $document) {
 
     $scope.$routeParams = $routeParams;
     // $scope.section = $routeParams.id;
@@ -25,15 +25,16 @@ var app = angular.module('shabbatones', ['ngRoute','ngAnimate','ngTouch', 'ui.bo
     //   $anchorScroll();
     // });
 
-    worksheets = {slides: 1276842353, albums: 612845608, events: 1335839826, tour: 1237774977, members: 1478583169, alumni: 565451615};
+    worksheets = {slides: 1276842353, albums: 612845608, songcredits: 237917842, events: 1335839826, tour: 1237774977, members: 1478583169, alumni: 565451615};
 
     angular.forEach(worksheets, function(value,key){
       var spreadsheetUrl = 'https://spreadsheets.google.com/feeds/list/140NStbyyUW95Kp5EjCQWjqh06kJNpF40aY-99gI5LMs/' + value + '/public/full?alt=json';
-      var rawData = [];
-      var parsedData = [];
+      var spreadsheetRaw = [];
+      var spreadsheetParsed = [];
+
       $http.get(spreadsheetUrl).success(function(data){
-        rawData = data.feed.entry;
-        angular.forEach(rawData, function(record){
+        spreadsheetRaw = data.feed.entry;
+        angular.forEach(spreadsheetRaw, function(record){
           parsedRecord = {};
           angular.forEach(record, function(v,k){
             if (k.slice(0,4) === 'gsx$') {
@@ -42,11 +43,46 @@ var app = angular.module('shabbatones', ['ngRoute','ngAnimate','ngTouch', 'ui.bo
               parsedRecord[newKey] = newVal;
             }
           });
-          parsedData.push(parsedRecord);
+          spreadsheetParsed.push(parsedRecord);
         });
-        $scope[key] = parsedData;
+        $scope[key] = spreadsheetParsed;
       });
     });
+
+    var spotifyUrl = 'https://api.spotify.com/v1/albums?ids=0hMgrz23VgOBUjGaGuIkRf,316HR3MeCktdPTsDP306yA,5wzldeHMr41i5uDYEia4Yw,0qqa61lKTVIxlHdbYWgfuG,0Qh0MvCO8s3wuL3SffnsBH';
+    var spotifyRaw = [];
+    var spotifyParsed = [];
+
+    $http.get(spotifyUrl).success(function(data){
+      spotifyRaw = data.albums;
+      
+      angular.forEach(spotifyRaw, function(album){
+        parsedAlbum = {};
+        parsedAlbum['albumid'] = album.id;
+
+        parsedSongs = [];
+        angular.forEach(album.tracks.items, function(song){
+          songSimple = {};
+          songSimple['songid'] = song.id;
+          songSimple['songtitle'] = song.name;
+          songSimple['clip'] = song.preview_url;
+          songSimple['tracknumber'] = song.track_number;
+          parsedSongs.push(songSimple);
+        });
+        parsedAlbum['songs'] = parsedSongs;
+        spotifyParsed.push(parsedAlbum);
+      });
+      $scope['spotify'] = spotifyParsed;
+    });
+
+    this.playClip = function(song){
+      $('audio').attr( "src", song.clip );
+      var a = document.getElementsByTagName("audio")[0];
+      a.play();
+      this.nowPlaying = song.songtitle;
+    };
+    $scope.oneAtATime = true;
+
   }]);
   
   app.controller('AlumniController', ['$scope', function($scope){
