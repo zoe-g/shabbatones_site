@@ -32,6 +32,10 @@ h4 {
   overflow-x: visible;
 }
 
+.nav, .pagination, .carousel, .panel-title a {
+  cursor: pointer;
+}
+
 section {
   overflow-x: hidden;
   min-height: 100vh;
@@ -60,16 +64,34 @@ section {
   margin-right: auto;
 }
 
-#home {
+#gallery {
   background-color: #cac5bb;
 }
 
 .carousel {
-  margin: 30px;
+  margin-top: 15px;
+  height: 72vh;
+  text-align: center;
+  background-color: #6d0e0e;
 }
 
-.carousel .fa {
-  color: #01256e;
+.carousel img {
+  height: 100%;
+  width: auto;
+  max-height: 100%;
+  margin: auto;
+  border: 1vh solid transparent;
+}
+
+.carousel iframe {
+  height: calc(72vh);
+  min-height: 112px;
+  max-height: 100%;
+  width: calc(128vh);
+  min-width: 200px;
+  max-width: 100%;
+  margin: auto;
+  border: 1vh solid transparent;
 }
 
 .carousel-control.right {

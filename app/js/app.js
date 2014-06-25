@@ -1,18 +1,32 @@
-var app = angular.module('shabbatones', ['ngRoute', 'ngAnimate', 'customFilters']);
+var app = angular.module('shabbatones', ['ngRoute','ngAnimate','ngTouch', 'ui.bootstrap', 'customFilters']);
 
   app.config(function($routeProvider, $locationProvider){
     $routeProvider
-      .when('/music/:album', {
+      .when('/:id/:album', {
         templateUrl: 'partials/album.html',
         controller: 'AlbumController'
+      })
+      .when('/:id', {
+        templateUrl: 'partials/music.html'
       })
       .otherwise({
         templateUrl: 'partials/music.html'
       });
   });
 
+  app.config(function($sceDelegateProvider){
+    $sceDelegateProvider.resourceUrlWhitelist(['self','http://www.youtube.com/embed/**']);
+  });
+
   app.controller('MainController', ['$http', '$scope', function($http, $scope) {
-    worksheets = {gallery: 1276842353, events: 1335839826, members: 1478583169, alumni: 565451615, albums: 612845608, songs: 186394306, tour: 1237774977};
+
+    // $scope.$routeParams = $routeParams;
+    // $scope.section = $routeParams.id;
+    // $rootScope.$on('$locationChangeSuccess', function(section){
+    //   $anchorScroll();
+    // });
+
+    worksheets = {slides: 1276842353, albums: 612845608, events: 1335839826, tour: 1237774977, members: 1478583169, alumni: 565451615};
 
     angular.forEach(worksheets, function(value,key){
       var spreadsheetUrl = 'https://spreadsheets.google.com/feeds/list/140NStbyyUW95Kp5EjCQWjqh06kJNpF40aY-99gI5LMs/' + value + '/public/full?alt=json';
@@ -37,12 +51,12 @@ var app = angular.module('shabbatones', ['ngRoute', 'ngAnimate', 'customFilters'
 
   }]);
 
-  app.controller('AlbumController', ['$routeParams', function($routeParams){
-    $scope.$routeParams = $routeParams;
+  app.controller('AlbumController', function($scope, $routeParams){
+    // $scope.selected_album = $routeParams.album;
     // $http.get(spotify_url).success(function(data){
     //   album.tracks = data.items;
     // });
-  }]);
+  });
   
   app.controller('AlumniController', ['$scope', function($scope){
     $scope.currentPage = 0;
@@ -52,10 +66,10 @@ var app = angular.module('shabbatones', ['ngRoute', 'ngAnimate', 'customFilters'
     };
   }]);
 
-  app.directive('home', function(){
+  app.directive('gallery', function(){
     return {
       restrict: 'E',
-      templateUrl: 'partials/home.html'
+      templateUrl: 'partials/gallery.html'
     };
   });
 
