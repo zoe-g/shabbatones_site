@@ -3,8 +3,7 @@ var app = angular.module('shabbatones', ['ngRoute','ngAnimate','ngTouch', 'ui.bo
   app.config(function($routeProvider, $locationProvider){
     $routeProvider
       .when('/:id/:album', {
-        templateUrl: 'partials/album.html',
-        controller: 'AlbumController'
+        templateUrl: 'partials/album.html'
       })
       .when('/:id', {
         templateUrl: 'partials/music.html'
@@ -18,9 +17,9 @@ var app = angular.module('shabbatones', ['ngRoute','ngAnimate','ngTouch', 'ui.bo
     $sceDelegateProvider.resourceUrlWhitelist(['self','http://www.youtube.com/embed/**']);
   });
 
-  app.controller('MainController', ['$http', '$scope', function($http, $scope) {
+  app.controller('MainController', ['$http', '$scope', '$routeParams', '$filter', function($http, $scope, $routeParams, $filter) {
 
-    // $scope.$routeParams = $routeParams;
+    $scope.$routeParams = $routeParams;
     // $scope.section = $routeParams.id;
     // $rootScope.$on('$locationChangeSuccess', function(section){
     //   $anchorScroll();
@@ -48,15 +47,7 @@ var app = angular.module('shabbatones', ['ngRoute','ngAnimate','ngTouch', 'ui.bo
         $scope[key] = parsedData;
       });
     });
-
   }]);
-
-  app.controller('AlbumController', function($scope, $routeParams){
-    // $scope.selected_album = $routeParams.album;
-    // $http.get(spotify_url).success(function(data){
-    //   album.tracks = data.items;
-    // });
-  });
   
   app.controller('AlumniController', ['$scope', function($scope){
     $scope.currentPage = 0;

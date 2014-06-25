@@ -1,21 +1,18 @@
-<!-- INCOMPLETE // USES MOSTLY SAMPLE HARD CODE -->
-
 <div class="col-xs-12 col-sm-6 album-details">
+  <span ng-repeat=" album in albums | filter : $routeParams.album ">
+    <img class="img-rounded cover-art-details" ng-src="{{album.coverart}}" /><br>
 
-  <img class="img-rounded cover-art-details" ng-src="img/album_covers/honey_and_hot_sauce.jpg" /><br>
+    <!-- Purchase Path via PayPal -->
+    <a ng-show="album.paypalid" ng-href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id={{album.paypalid}}" target="_top">
+      <button type="button" class="btn btn-warning"><img src="img/icons/paypal-sm.png" /> Buy Album</button></a>
+    <a ng-show="!album.paypalid" href>
+      <button type="button" class="btn btn-danger">Sold Out</button></a>
 
-  <!-- Purchase Path via PayPal -->
-  <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id={{cd.paypalid}}" target="_top">
-    <button type="button" class="btn btn-warning"><img src="img/icons/paypal-sm.png" /> Buy Album</button></a>
+    <!-- Direct to iTunes -->
+    <a ng-show="album.itunesid" ng-href="https://itunes.apple.com/us/album/{{album.itunesname}}/{{album.itunesid}}" target="itunes_store">
+      <button type="button" class="btn btn-success"><img src="img/icons/apple-sm.png" /> Download</button></a>
 
-  <!-- Direct to iTunes -->
-  <a href="https://itunes.apple.com/us/cd/{{cd.itunesname}}/{{cd.itunesid}}" target="itunes_store">
-    <button type="button" class="btn btn-success"><img src="img/icons/apple-sm.png" /> Download</button></a>
-
-  <!-- Listen on Spotify -->
-  <a href="spotify:album:{{cd.spotifyid}}">
-  <button type="button" class="btn btn-danger"><img src="img/icons/spotify-sm.png" /> Listen</button></a>
-
+    </span>
 </div>
 
 <div class="col-xs-12 col-sm-6 track-list">

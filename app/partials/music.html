@@ -2,18 +2,17 @@
   <img class="img-rounded cover-art-grid" ng-src="{{album.coverart}}" /><br>
 
   <!-- Purchase Path via PayPal -->
-  <a ng-show="album.paypalid" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id={{album.paypalid}}" target="_top">
+  <a ng-show="album.paypalid" ng-href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id={{album.paypalid}}" target="_top">
     <button type="button" class="btn btn-warning"><img src="img/icons/paypal-sm.png" /> Buy Album</button></a>
 
-  <a ng-show="!album.paypalid" href="">
+  <a ng-show="!album.paypalid" href>
     <button type="button" class="btn btn-danger">Sold Out</button></a>
 
   <!-- Direct to iTunes -->
-  <a ng-show="album.itunesid" href="https://itunes.apple.com/us/album/{{album.itunesname}}/{{album.itunesid}}" target="itunes_store">
+  <a ng-show="album.itunesid" ng-href="https://itunes.apple.com/us/album/{{album.itunesname}}/{{album.itunesid}}" target="itunes_store">
     <button type="button" class="btn btn-success"><img src="img/icons/apple-sm.png" /> Download</button></a>
 
   <!-- Link to Album Page with Spotify Player-->
-  <a ng-show="album.spotifyid" href="">
+  <a ng-show="album.spotifyid" ng-href="#music/{{album.itunesname}}">
     <button type="button" class="btn btn-primary"><img src="img/icons/spotify-sm.png" /> Preview</button></a>
-
 </div>
