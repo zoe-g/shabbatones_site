@@ -19,6 +19,12 @@ body {
   padding: 50px 0;
 }
 
+section {
+  overflow-x: hidden;
+  min-height: calc(100vh);
+  padding: 0px 15px 50px 15px;
+}
+
 h3 {
   color: #95001a;
 }
@@ -36,10 +42,11 @@ h4 {
   cursor: pointer;
 }
 
-section {
-  overflow-x: hidden;
-  min-height: 100vh;
-  padding: 0px 15px 50px 15px;
+.nav-tabs.nav-justified > li.active > a,
+.nav-tabs.nav-justified > li.active > a:hover,
+.nav-tabs.nav-justified > li.active > a:focus {
+  background-color: #cac5bb;
+  border-bottom-color: #cac5bb;
 }
 
 .tab-down-white {
@@ -155,19 +162,32 @@ audio {
   background-color: #cac5bb;
 }
 
+#events .media-object {
+  text-align: center;
+}
+
+#events .media:first-child {
+  margin-top: 15px;
+}
+
+#events .fa-calendar-o {
+  font-size: 90px;
+  color: #f1f1f1;
+  margin-bottom: 10px;
+}
+
+#events button {
+  width: 100%;
+  margin-top: 2px;
+  text-align: left;
+}
+
 #tour {
   background-color: #f1f1f1;
 }
 
 #members {
   background-color: #cac5bb;
-}
-
-#members .nav-tabs > li.active > a,
-#members .nav-tabs > li.active > a:hover,
-#members .nav-tabs > li.active > a:focus {
-  background-color: #cac5bb;
-  border-bottom-color: transparent;
 }
 
 #members .media-list .media-object {
@@ -220,6 +240,17 @@ audio {
 #members .alumni-video iframe {
   width: 48vw;
   height: 27vw;
+}
+
+#tour iframe {
+  margin-top: 25px;
+  width: 48vw;
+  height: 27vw;
+}
+
+#tour img {
+  width: 100%;
+  height: auto;
 }
 
 #about {

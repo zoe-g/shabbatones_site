@@ -1,6 +1,6 @@
 <div class="gallery-carousel">
   <carousel interval="5000">
-    <slide ng-repeat="slide in slides | orderBy : 'order' ">
+    <slide ng-repeat="slide in slides | orderBy : '+order' ">
       <img class="gallery-image" ng-if="slide.imagelink" ng-src="{{slide.imagelink}}" />
       <div class="iframe-wrapper" ng-if="slide.youtubeid"><iframe class="gallery-video" ng-src="{{slide.youtubeembed}}" frameborder="0" allowfullscreen></iframe></div>
     </slide>

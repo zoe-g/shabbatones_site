@@ -66,32 +66,24 @@
     <section id="events" class="container-fluid">
       <a href="#events"><div class="tab-down-white"></div></a>
       <div class="row">
-      events
+        <events></events>
       </div>
     </section>
 
     <section id="tour" class="container-fluid">
       <a href="#tour"><div class="tab-down-gray"></div></a>
-      <div class="row">
-      tour
-      </div>
+        <tour></tour>
     </section>
 
     <section id="members" class="container-fluid">
       <a href="#members"><div class="tab-down-white"></div></a>
       <div class="row">
-
-      <ul class="nav nav-tabs nav-justified">
-        <li class="members-panel active"><a href ng-click="panel = 1"><h3>Currently Singing</h3></a></li>
-        <li class="alumni-panel"><a href ng-click="panel = 2"><h3>Shabbatones Community</h3></a></li>
-      </ul>
-
-      <div class="animate-switch-container" ng-switch on="panel">
-        <div class="animate-switch" ng-switch-when="1"><members></members></div>
-        <div class="animate-switch" ng-switch-when="2"><alumni></alumni></div>
-        <div class="animate-switch" ng-switch-default><members></members></div>
-      </div>
-
+        <div class="col-xs-12">
+        <tabset justified="true">
+          <tab heading="Currently Singing"><members></members></tab>
+          <tab heading="Shabbatones Community"><alumni></alumni></tab>
+        </tabset>
+        </div>
       </div>
     </section>
 

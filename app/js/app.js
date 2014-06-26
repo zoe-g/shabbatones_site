@@ -50,6 +50,21 @@ var app = angular.module('shabbatones', ['ngRoute','ngAnimate','ngTouch','ui.boo
           spreadsheetParsed.push(parsedRecord);
         });
         $scope[key] = spreadsheetParsed;
+
+        // IF THE SPREADSHEET JUST CALLED WAS THE EVENTS PAGE, DETERMINE IF EACH IS PAST OR FUTURE
+        if (key === 'events') {
+          var futureEvents = [];
+          var pastEvents = [];
+          angular.forEach($scope.events, function(event){
+            if (event.future) {
+              futureEvents.push(event);
+            } else {
+              pastEvents.push(event);
+            }
+          });
+        $scope['futureEvents'] = futureEvents;
+        $scope['pastEvents'] = pastEvents;
+        }
       });
     });
 
@@ -110,6 +125,20 @@ var app = angular.module('shabbatones', ['ngRoute','ngAnimate','ngTouch','ui.boo
     };
   });
 
+  app.directive('events', function(){
+    return {
+      restrict: 'E',
+      templateUrl: 'partials/events.html'
+    };
+  });
+
+  app.directive('tour', function(){
+    return {
+      restrict: 'E',
+      templateUrl: 'partials/tour.html'
+    };
+  });
+
   app.directive('members', function(){
     return {
       restrict: 'E',
@@ -130,18 +159,3 @@ var app = angular.module('shabbatones', ['ngRoute','ngAnimate','ngTouch','ui.boo
       templateUrl: 'partials/about.html',
     };
   });
-
-// MEMBERS SECTION - JQUERY TO TOGGLE TABS
-$( document ).ready(function() {
-
-  $('.members-panel').on('click', function(){
-    $('.members-panel').addClass('active');
-    $('.alumni-panel').removeClass('active');
-  });
-
-  $('.alumni-panel').on('click', function(){
-    $('.members-panel').removeClass('active');
-    $('.alumni-panel').addClass('active');
-  });
-
-});

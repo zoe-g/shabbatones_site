@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-xs-12">
+  <h3>Winter Tours</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-6">
+    <p>{{tour[0].generaldescription}}</p>
+  </div>
+
+  <div class="col-xs-12 col-sm-6">
+    <img class="img-rounded" ng-src="{{tour[0].imagelink}}" />
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-6 hidden-xs">
+    <iframe ng-src="{{tour[0].youtubeembed}}" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <div class="col-xs-12 col-sm-6">
+    <h3>Next Stop: {{tour[0].nexttourlocation}}</h3>
+    <h4 ng-show="tour[0].nexttourstart && tour[0].nexttourend">{{tour[0].nexttourstart}} - {{tour[0].nexttourend}}</h4>
+    <p ng-show="tour[0].nexttourdetails">{{tour[0].nexttourdetails}}</p>
+    <p>Interested in having us perform at your organization, school or event? Please be in touch! Find out more at <a href="https://www.gigsalad.com/the_shabbatones_philadelphia" target="_blank" analytics-on analytics-category="Click To" analytics-event="Tour Section" analytics-label="GigSalad">GigSalad</a> or reach out to us directly at <a href="mailto:contact@pennshabbatones.com" target="_blank" analytics-on analytics-category="Click To" analytics-event="Tour Section" analytics-label="Email">contact@pennshabbatones.com</a>.</p>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="col-xs-12 events-grid">
+<tabset justified="true">
+
+  <tab heading="Upcoming Performances">
+    <ul class="media-list">
+      <li class="col-xs-12 col-md-6 media" ng-repeat=" event in futureEvents | orderBy : 'date' ">
+        <div class="media-object pull-left">
+          <i class="fa fa-calendar-o"></i><br>
+          <span ng-show="event.ticketorderlink">
+            <a ng-href="{{event.ticketorderlink}}" target="_blank">
+            <button type="button" class="btn btn-default"><i class="fa fa-ticket"></i> Tickets</button></a><br>
+          </span>
+          <span ng-show="event.facebookeventlink">
+            <a ng-href="{{event.facebookeventlink}}" target="_blank">
+            <button type="button" class="btn btn-default"><i class="fa fa-facebook-square"></i> RSVP</button></a><br>
+          </span>
+          <span ng-show="event.promovideolink">
+            <a ng-href="{{event.promovideolink}}" target="_blank">
+            <button type="button" class="btn btn-default"><i class="fa fa-youtube-play"></i> Trailer</button></a><br>
+          </span>
+        </div>
+        <div class="media-body">
+          <h3 class="media-heading">{{event.title}}</h3>
+          <h4 class="media-heading">{{event.date}} @ {{event.time}} - {{event.location}}</h4>
+          <h5>{{event.description}}<h5>
+        </div>
+      </li>
+    </ul>
+  </tab>
+  
+  <tab heading="Recent Events">
+    <ul class="media-list">
+      <li class="col-xs-12 col-md-6 media" ng-repeat=" event in pastEvents | orderBy : 'date' | limitTo : 6 ">
+        <div class="media-object pull-left">
+          <i class="fa fa-calendar-o"></i><br>
+          <span ng-show="event.facebookalbumlink">
+            <a ng-href="{{event.facebookalbumlink}}" target="_blank">
+            <button type="button" class="btn btn-default"><i class="fa fa-camera"></i> Photos</button></a><br>
+          </span>
+          <span ng-show="event.youtubeplaylistlink">
+            <a ng-href="{{event.youtubeplaylistlink}}" target="_blank">
+            <button type="button" class="btn btn-default"><i class="fa fa-youtube-play"></i> Videos</button></a><br>
+          </span>
+        </div>
+        <div class="media-body">
+          <h3 class="media-heading">{{event.title}}</h3>
+          <h4 class="media-heading">{{event.date}} @ {{event.time}} - {{event.location}}</h4>
+          <h5>{{event.description}}<h5>
+        </div>
+      </li>
+    </ul>
+  </tab>
+
+</tabset>
+</div>
