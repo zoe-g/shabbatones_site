@@ -1,20 +1,22 @@
 <div class="col-xs-12 col-sm-6 album-details">
   <span ng-repeat=" album in albums | filter : $routeParams.album ">
+
+    <!-- Album Information -->
     <h3>{{album.albumtitle}} ({{album.releaseyear}})</h3>
     <img class="img-rounded cover-art-details" ng-src="{{album.coverart}}" /><br>
 
-    <!-- Purchase Path via PayPal -->
+    <!-- Add to Cart via PayPal -->
     <a ng-show="album.paypalid" ng-href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id={{album.paypalid}}" target="_top" analytics-on analytics-category="Add to PayPal Cart" analytics-event="Album Page" analytics-label="{{album.albumtitle}}">
       <button type="button" class="btn btn-warning"><img src="img/icons/paypal-sm.png" /> Buy Album</button></a>
     <a ng-show="!album.paypalid" href>
       <button type="button" class="btn btn-danger">Sold Out</button></a>
 
-    <!-- Direct to iTunes -->
+    <!-- Download via iTunes -->
     <a ng-show="album.itunesid" ng-href="https://itunes.apple.com/us/album/{{album.itunesname}}/{{album.itunesid}}" target="itunes_store" analytics-on analytics-category="Download from iTunes" analytics-event="Album Page" analytics-label="{{album.albumtitle}}">
       <button type="button" class="btn btn-success"><img src="img/icons/apple-sm.png" /> Download</button></a>
-    </span>
+  </span>
 
-    <!-- Audio Player for MP3 Previews -->
+    <!-- HTML5 Audio Player for Preview Clips -->
     <button type="button" class="btn btn-danger" ng-show="main.nowPlaying">
       <p>Now Previewing: {{main.nowPlaying}}</p>
       <audio controls>
@@ -26,17 +28,17 @@
 <div class="col-xs-12 col-sm-6 album-details">
   <span ng-repeat=" album in albums | filter : $routeParams.album ">
   <span ng-repeat=" spot in spotify | filter : album.spotifyid ">
+
+    <!-- Track List -->
     <h3>Songs on this Album</h3>
-    <accordion close-others="oneAtATime">
-      
+    <accordion close-others="oneAtATime">  
       <accordion-group  heading="{{song.songtitle}}" ng-repeat=" song in spot.songs | orderBy : 'tracknumber' " ng-click="main.playClip(song)">
         <span ng-repeat=" credit in songcredits | filter : song.songtitle | orderBy : '-part' ">
           {{credit.part}}: {{credit.shabbatone}}<br>
         </span>
       </accordion-group>
-    
     </accordion>
-  </span>
-  </span>
 
+  </span>
+  </span>
 </div>

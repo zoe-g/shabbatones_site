@@ -1,11 +1,15 @@
 <div class="col-sm-6 hidden-xs alumni-video">
+
+  <!-- Video -->
   <iframe src="http://www.youtube.com/embed/G7Nvo570L7M?rel=0" frameborder="0"></iframe>
   <h4>What The Shabbatones Means To Us</h4>
-  <p>Produced in honor of our tenth anniversary in 2011,<br>this video is a snapshot of who we are as a community.</p>
+  <p>Produced in honor of our tenth anniversary in 2011, this video<br>is a snapshot of who we are as a community of students and alumni.</p>
 </div>
 
 <div class="col-xs-12 col-sm-6 alumni-table">
   <table class="table table-hover table-condensed table-responsive">
+
+    <!-- Table Header Row with Sort Functionality -->
     <thead>
       <td id="name-col" ng-click="column = 'name' ; reverse = !reverse">
         <h4><i class="fa fa-chevron-right"></i>Name <i class="fa fa-sort"></i></h4>
@@ -21,6 +25,7 @@
       </td>
     </thead>
 
+    <!-- List of All Shabbatones -->
     <tbody>
       <tr ng-repeat="alum in alumni | orderBy : column : reverse | pagination: (currentPage-1) * pageSize | limitTo : pageSize">
         <td id="name-col">
@@ -39,6 +44,7 @@
     </tbody>
   </table>
 
+  <!-- Additional Sort Options -->
   <span class="btn-group btn-group-xs">
     <button type="button" class="btn btn-default" ng-click="column = 'musicaldirector' ; reverse = true ; currentPage = 1"><i class="fa fa-music"></i> Musical Director</button>
     <button type="button" class="btn btn-default" ng-click="column = 'president' ; reverse = true ; currentPage = 1"><i class="fa fa-magic"></i> President</button>
@@ -46,6 +52,7 @@
     <button type="button" class="btn btn-default" ng-click="column = 'cdeditorproducer' ; reverse = true ; currentPage = 1"><i class="fa fa-headphones"></i> CD Producer</button>
   </span><br>
 
+  <!-- Pagination -->
   <pagination total-items="totalItems" items-per-page="pageSize" ng-model="currentPage"></pagination>
   
 </div>
