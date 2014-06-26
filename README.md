@@ -1,6 +1,6 @@
 # Website for Penn Shabbatones
 
-This is the source code for a custom website designed for the Penn Shabbatones, a college a cappella group. It is designed to incorporate text and audio along with social, multimedia and commerce features as relevant for a musical performance group, and provide a way to update all content on a regular basis without requiring coding knowledge from the admin.
+This is the source code for a custom website designed for the Penn Shabbatones, a college a cappella group. It is designed to incorporate text and audio along with social, multimedia and commerce features as relevant for a musical performance group. In order to provide a way to update all content on a regular basis without requiring coding knowledge from the admin, it utilizes Google Spreadsheets as its data source and Spotify as its music source.
 
 ## Resources
 - [AngularJS][site-angular]
