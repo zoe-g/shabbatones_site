@@ -211,9 +211,10 @@ audio {
 }
 
 #members .alumni-video {
-  margin-top: 105px;
+  margin-top: 50px;
   padding: 0px;
   text-align: center;
+  color: #01256e;
 }
 
 #members .alumni-video iframe {

@@ -1,4 +1,4 @@
-var app = angular.module('shabbatones', ['ngRoute','ngAnimate','ngTouch', 'ui.bootstrap', 'customFilters']);
+var app = angular.module('shabbatones', ['ngRoute','ngAnimate','ngTouch','ui.bootstrap','angulartics','angulartics.google.analytics']);
 
   app.config(function($routeProvider, $locationProvider){
     $routeProvider
@@ -17,11 +17,11 @@ var app = angular.module('shabbatones', ['ngRoute','ngAnimate','ngTouch', 'ui.bo
     $sceDelegateProvider.resourceUrlWhitelist(['self','http://www.youtube.com/embed/**','https://p.scdn.co/mp3-preview/**']);
   });
 
-  app.controller('MainController', ['$http', '$scope', '$routeParams', '$filter', '$document', function($http, $scope, $routeParams, $filter, $document) {
+  app.controller('MainController', ['$http', '$scope', '$routeParams', '$filter', '$document', '$analytics', function($http, $scope, $routeParams, $filter, $document, $analytics) {
 
     $scope.$routeParams = $routeParams;
-    // $scope.section = $routeParams.id;
-    // $rootScope.$on('$locationChangeSuccess', function(section){
+
+    // $rootScope.$on('$locationChangeSuccess', function(){
     //   $anchorScroll();
     // });
 
@@ -80,18 +80,23 @@ var app = angular.module('shabbatones', ['ngRoute','ngAnimate','ngTouch', 'ui.bo
       var a = document.getElementsByTagName("audio")[0];
       a.play();
       this.nowPlaying = song.songtitle;
+      $analytics.eventTrack('Song Clip', {  category: 'Listen', label: song.songtitle });
     };
     $scope.oneAtATime = true;
 
-  }]);
-  
-  app.controller('AlumniController', ['$scope', function($scope){
-    $scope.currentPage = 0;
+    $scope.currentPage = 1;
+    $scope.totalItems = 90;
     $scope.pageSize = 15;
-    $scope.numberPages = function () {
-      return Math.ceil(alumni.members.length / $scope.pageSize);
-    };
+
   }]);
+
+  app.filter('pagination', function() {
+    return function(input, start){
+      start = +start;
+      return input.slice(start);
+    };
+  });
+
 
   app.directive('gallery', function(){
     return {
@@ -99,20 +104,6 @@ var app = angular.module('shabbatones', ['ngRoute','ngAnimate','ngTouch', 'ui.bo
       templateUrl: 'partials/gallery.html'
     };
   });
-
-  // app.directive('music', function(){
-  //   return {
-  //     restrict: 'E',
-  //     templateUrl: 'partials/music.html'
-  //   };
-  // });
-
-  // app.directive('album', function(){
-  //   return {
-  //     restrict: 'E',
-  //     templateUrl: 'partials/album.html'
-  //   };
-  // });
 
   app.directive('members', function(){
     return {

@@ -1,9 +1,10 @@
 <div class="col-sm-6 hidden-xs alumni-video">
   <iframe src="http://www.youtube.com/embed/G7Nvo570L7M?rel=0" frameborder="0"></iframe>
   <h4>What The Shabbatones Means To Us</h4>
+  <p>Produced in honor of our tenth anniversary in 2011,<br>this video is a snapshot of who we are as a community.</p>
 </div>
 
-<div class="col-xs-12 col-sm-6 alumni-table" ng-controller="AlumniController as alums">
+<div class="col-xs-12 col-sm-6 alumni-table">
   <table class="table table-hover table-condensed table-responsive">
     <thead>
       <td id="name-col" ng-click="column = 'name' ; reverse = !reverse">
@@ -21,7 +22,7 @@
     </thead>
 
     <tbody>
-      <tr ng-repeat="alum in alumni | orderBy : column : reverse | pagination: currentPage * pageSize | limitTo : pageSize">
+      <tr ng-repeat="alum in alumni | orderBy : column : reverse | pagination: (currentPage-1) * pageSize | limitTo : pageSize">
         <td id="name-col">
           {{alum.name}}
           <span class="pull-right alumni-roles">
@@ -39,16 +40,12 @@
   </table>
 
   <span class="btn-group btn-group-xs">
-    <button type="button" class="btn btn-default" ng-click="column = 'musicaldirector' ; reverse = true"><i class="fa fa-music"></i> Musical Director</button>
-    <button type="button" class="btn btn-default" ng-click="column = 'president' ; reverse = true"><i class="fa fa-magic"></i> President</button>
-    <button type="button" class="btn btn-default" ng-click="column = 'cofounder' ; reverse = true"><i class="fa fa-star"></i> Co-Founder</button>
-    <button type="button" class="btn btn-default" ng-click="column = 'cdeditorproducer' ; reverse = true"><i class="fa fa-headphones"></i> CD Producer</button>
+    <button type="button" class="btn btn-default" ng-click="column = 'musicaldirector' ; reverse = true ; currentPage = 1"><i class="fa fa-music"></i> Musical Director</button>
+    <button type="button" class="btn btn-default" ng-click="column = 'president' ; reverse = true ; currentPage = 1"><i class="fa fa-magic"></i> President</button>
+    <button type="button" class="btn btn-default" ng-click="column = 'cofounder' ; reverse = true ; currentPage = 1"><i class="fa fa-star"></i> Co-Founder</button>
+    <button type="button" class="btn btn-default" ng-click="column = 'cdeditorproducer' ; reverse = true ; currentPage = 1"><i class="fa fa-headphones"></i> CD Producer</button>
   </span><br>
 
-  <ul class="pagination">
-    <li class="ng-class: {disabled: currentPage <= 0};" ng-click="currentPage=currentPage-1"><a href>&laquo;</a></li>
-    <li><a href>Page {{currentPage+1}} of {{ numberPages() }}</a></li>
-    <li class="ng-class: {disabled: currentPage >= numberPages()-1}" ng-click="currentPage=currentPage+1"><a href>&raquo;</a></li>
-  </ul>
+  <pagination total-items="totalItems" items-per-page="pageSize" ng-model="currentPage"></pagination>
   
 </div>
