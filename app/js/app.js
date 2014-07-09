@@ -31,7 +31,7 @@ var app = angular.module('shabbatones', ['ngRoute','ngAnimate','ngTouch','ui.boo
     // });
 
     // REQUESTS DATA FROM GOOGLE SPREADSHEETS API AND PARSES FOR USE IN ALL SECTIONS
-    worksheets = {slides: 1276842353, albums: 612845608, songcredits: 237917842, events: 1335839826, tour: 1237774977, members: 1478583169, alumni: 565451615};
+    worksheets = {slides: 'ol475pn', albums: 'oa4vf1u', songcredits: 'o3xneq0', events: 'om3boug', tour: 'okgxtgb', members: 'oogb5uj', alumni: 'o9cnl39'};
     angular.forEach(worksheets, function(value,key){
       var spreadsheetUrl = 'https://spreadsheets.google.com/feeds/list/140NStbyyUW95Kp5EjCQWjqh06kJNpF40aY-99gI5LMs/' + value + '/public/full?alt=json';
       var spreadsheetRaw = [];
