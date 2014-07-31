@@ -25,6 +25,10 @@ var app = angular.module('shabbatones', ['ngRoute','ngAnimate','ngTouch','ui.boo
     // ASSIGNS ROUTE PARAMS TO SCOPE FOR USE WITHIN APP
     $scope.$routeParams = $routeParams;
 
+    // ALUMNI SECTION - DEFINES VARIABLES FOR PAGINATION
+    $scope.currentPage = 1;
+    $scope.pageSize = 15;
+
     // WORK IN PROGRESS - SCROLL FUNCTIONALITY
     // $rootScope.$on('$locationChangeSuccess', function(){
     //   $anchorScroll();
@@ -50,6 +54,11 @@ var app = angular.module('shabbatones', ['ngRoute','ngAnimate','ngTouch','ui.boo
           spreadsheetParsed.push(parsedRecord);
         });
         $scope[key] = spreadsheetParsed;
+
+        // IF THE SPREADSHEET JUST CALLED WAS THE ALUMNI PAGE, SET TOTAL FOR PAGINATION
+        if (key === 'alumni') {
+          $scope.totalItems = $scope.alumni.length;
+        }
 
         // IF THE SPREADSHEET JUST CALLED WAS THE EVENTS PAGE, DETERMINE IF EACH IS PAST OR FUTURE
         if (key === 'events') {
@@ -101,11 +110,6 @@ var app = angular.module('shabbatones', ['ngRoute','ngAnimate','ngTouch','ui.boo
       $analytics.eventTrack('Song Clip', {  category: 'Listen', label: song.songtitle });
     };
     $scope.oneAtATime = true;
-
-    // ALUMNI SECTION - DEFINES VARIABLES FOR PAGINATION
-    $scope.currentPage = 1;
-    $scope.totalItems = 90;
-    $scope.pageSize = 15;
 
   }]);
 
@@ -159,3 +163,17 @@ var app = angular.module('shabbatones', ['ngRoute','ngAnimate','ngTouch','ui.boo
       templateUrl: 'partials/about.html',
     };
   });
+
+// Nav bar highlights as user scrolls through sections
+$('body').scrollspy({
+    target: '.navbar-fixed-top'
+})
+
+// Scroll to sections
+$("nav").find("a").click(function(e) {
+    e.preventDefault();
+    var goTo = $(this).attr("href");
+    $('html, body').animate({
+        scrollTop: $(goTo).offset().top
+    });
+});

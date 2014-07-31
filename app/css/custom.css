@@ -12,17 +12,13 @@
 Helvetica, Arial Narrow, Arial, sans-serif
 Georgia, Times New Roman, Times, serif */
 
+
+/* Page Set-Up */
 html {
 }
 
 body {
   padding: 50px 0;
-}
-
-section {
-  overflow-x: hidden;
-  min-height: calc(100vh);
-  padding: 0px 15px 50px 15px;
 }
 
 h3 {
@@ -33,20 +29,39 @@ h4 {
   color: #01256e;
 }
 
+.nav, .pagination, .carousel, .panel-title a {
+  cursor: pointer;
+}
+
 .navbar {
   border: 0;
   overflow-x: visible;
 }
 
-.nav, .pagination, .carousel, .panel-title a {
-  cursor: pointer;
+.nav.navbar-nav > li > a:hover,
+.nav.navbar-nav > li.active > a:hover {
+  color: #f2c100;
 }
 
-.nav-tabs.nav-justified > li.active > a,
-.nav-tabs.nav-justified > li.active > a:hover,
-.nav-tabs.nav-justified > li.active > a:focus {
+.navbar-fixed-bottom {
+  height: 50px;
+  padding-top: 9px;
+  text-align: center;
+}
+
+/* Section Set-Up */
+section {
+  overflow-x: hidden;
+  min-height: calc(100vh);
+  padding: 0px 15px 50px 15px;
+}
+
+#gallery, #music, #tour {
   background-color: #cac5bb;
-  border-bottom-color: #cac5bb;
+}
+
+#events, #members, #about {
+  background-color: #f1f1f1;
 }
 
 .tab-down-white {
@@ -71,11 +86,29 @@ h4 {
   margin-right: auto;
 }
 
-#gallery {
-  background-color: #cac5bb;
+.nav-tabs.nav-justified > li.active > a,
+.nav-tabs.nav-justified > li.active > a:hover,
+.nav-tabs.nav-justified > li.active > a:focus {
+  background-color: #f1f1f1;
+  border-bottom-color: #f1f1f1;
 }
 
-.carousel {
+@media (max-width: 768px) {
+  .nav-tabs.nav-justified > li.active > a,
+  .nav-tabs.nav-justified > li.active > a:hover,
+  .nav-tabs.nav-justified > li.active > a:focus {
+    border-color: transparent;
+  }
+}
+
+iframe {
+  width: 48vw;
+  height: 27vw;
+}
+
+/* Gallery Section */
+
+/*.carousel {
   margin-top: 15px;
   height: 72vh;
   text-align: center;
@@ -107,22 +140,73 @@ h4 {
 
 .carousel-control.left {
   background-image: none;
-}
+}*/
 
-#title {
+#gallery {
   color: #95001a;
   text-align: center;
 }
 
+/* Events Section */
+#events .media:first-child {
+  margin-top: 15px;
+}
+
+#events .fa-calendar-o {
+  font-size: 90px;
+  color: #cac5bb;
+  margin-bottom: 10px;
+}
+
+#events button {
+  width: 100%;
+  margin-top: 2px;
+  text-align: left;
+}
+
+/* Music Section */
 #music {
-  background-color: #f1f1f1;
   text-align: center;
 }
 
-#music .cover-art-grid {
-  width: 75%;
-  min-width: 130px;
-  margin-top: 20px;
+.grid-item {
+  padding: 10px;
+}
+
+.grid-item .grid-link {
+    display: block;
+    position: relative;
+    margin: auto;
+}
+
+.grid-item .grid-link img {
+  width: 100%;
+}
+
+.grid-item .grid-link .caption {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background: rgba(242, 193, 0,.8);
+}
+
+.grid-item .grid-link .caption:hover {
+    opacity: 1;
+}
+
+.grid-item .grid-link .caption .caption-content {
+    position: absolute;
+    top: calc(50% - 25px);
+    width: 100%;
+    height: 20px;
+    text-align: center;
+    font-size: 20px;
+    color: #fff;
+}
+
+#music .fa-times-circle-o {
+  color: #4b4b4b;
 }
 
 #music .album-details {
@@ -158,36 +242,28 @@ audio {
   max-width: 100%;
 }
 
-#events {
-  background-color: #cac5bb;
+/* Members Section */
+
+#members .grid-item .grid-link .caption {
+  background: rgba(149,0,26,.9);
 }
 
-#events .media-object {
-  text-align: center;
-}
-
-#events .media:first-child {
-  margin-top: 15px;
-}
-
-#events .fa-calendar-o {
-  font-size: 90px;
-  color: #f1f1f1;
-  margin-bottom: 10px;
-}
-
-#events button {
+#members .grid-item .grid-link .caption .caption-content {
+  bottom: 0;
   width: 100%;
-  margin-top: 2px;
   text-align: left;
+  font-size: 20px;
 }
 
-#tour {
-  background-color: #f1f1f1;
+#members .member-profile {
+  width: 110px;
+  height: auto;
+  border: 1px solid #f1f1f1;
 }
 
-#members {
-  background-color: #cac5bb;
+#members .media-list {
+  max-height: 100vh;
+  overflow-y: scroll;
 }
 
 #members .media-list .media-object {
@@ -234,39 +310,19 @@ audio {
   margin-top: 50px;
   padding: 0px;
   text-align: center;
-  color: #01256e;
 }
 
-#members .alumni-video iframe {
-  width: 48vw;
-  height: 27vw;
-}
-
-#tour iframe {
-  margin-top: 25px;
-  width: 48vw;
-  height: 27vw;
-}
-
+/* Tour Section */
 #tour img {
-  width: 100%;
-  height: auto;
+  max-height: 50vh;
+  margin-top: 20px;
 }
 
-#about {
-  background-color: #f1f1f1;
-}
-
+/* About Section */
 #about button {
   margin-bottom: 5px;
 }
 
 #about #footnote {
-  text-align: center;
-}
-
-.navbar-fixed-bottom {
-  height: 50px;
-  padding-top: 9px;
   text-align: center;
 }
