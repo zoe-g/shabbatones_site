@@ -7,7 +7,9 @@
   </carousel>
 </div> -->
 
-<iframe src="http://www.youtube.com/embed/LeTWZfVMlRQ?rel=0&showinfo=0&controls=2" frameborder="0" allowfullscreen></iframe>
+<span ng-repeat="slide in slides | orderBy : '+order' | limitTo : 1">
+  <iframe class="gallery-video" ng-src="{{slide.youtubeembed}}" frameborder="0" allowfullscreen></iframe>
+</span>
 
 <h1>Penn Shabbatones</h1>
 <h4>University of Pennsylvania's Jewish A Cappella Group</h4>

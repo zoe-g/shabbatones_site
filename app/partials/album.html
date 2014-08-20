@@ -1,14 +1,15 @@
 <div id="album-page">
-  <div class="col-xs-1 col-xs-push-11">
-    <a href="#music"><i class="fa fa-times-circle-o fa-2x"></i></a>
+  <div class="col-xs-12">
+    <span class="pull-right">
+      <a href="#music"><i class="fa fa-times-circle-o fa-2x"></i></a>
+    </span>
   </div>
 
-  <div class="col-xs-11 col-sm-6 album-details">
+  <div class="col-xs-12 col-sm-6 album-details">
 
     <span ng-repeat=" album in albums | filter : $routeParams.album ">
 
       <!-- Album Information -->
-      <h3>{{album.albumtitle}} ({{album.releaseyear}})</h3>
       <img class="cover-art-details" ng-src="{{album.coverart}}" /><br>
 
       <!-- Add to Cart via PayPal -->
@@ -31,12 +32,11 @@
       </button>
   </div>
 
-  <div class="col-xs-11 col-sm-5 album-details">
+  <div class="col-xs-12 col-sm-6 album-details">
     <span ng-repeat=" album in albums | filter : $routeParams.album ">
     <span ng-repeat=" spot in spotify | filter : album.spotifyid ">
 
       <!-- Track List -->
-      <h3>Songs on this Album</h3>
       <accordion close-others="oneAtATime">  
         <accordion-group  heading="{{song.songtitle}}" ng-repeat=" song in spot.songs | orderBy : 'tracknumber' " ng-click="main.playClip(song)">
           <span ng-repeat=" credit in songcredits | filter : song.songtitle | orderBy : '-part' ">
