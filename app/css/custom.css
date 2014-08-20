@@ -42,6 +42,8 @@ section {
 .navbar-fixed-bottom {
   height: 50px;
   padding-top: 9px;
+  padding-left: 0px;
+  padding-right: 0px;
   text-align: center;
 }
 
@@ -163,6 +165,7 @@ h4,
   color: #fff;
   font-size: 20px;
   padding-top: calc(50% - 25px);
+  overflow-y: hidden;
 }
 
 .grid-item .grid-link .caption:hover {
@@ -180,7 +183,6 @@ h4,
 #members .grid-item .grid-link .caption-text {
   font-size: 18px;
   text-align: left;
-  overflow-y: hidden;
   padding: 10px;
 }
 

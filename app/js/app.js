@@ -20,7 +20,7 @@ var app = angular.module('shabbatones', ['ngRoute','ngAnimate','ngTouch','ui.boo
   });
 
   // PRIMARY CONTROLLER FOR SINGLE PAGE APP
-  app.controller('MainController', ['$http', '$scope', '$routeParams', '$filter', '$document', '$analytics', function($http, $scope, $routeParams, $filter, $document, $analytics) {
+  app.controller('MainController', ['$http', '$scope', '$routeParams', '$filter', '$document', '$analytics', '$modal', function($http, $scope, $routeParams, $filter, $document, $analytics, $modal) {
 
     // ASSIGNS ROUTE PARAMS TO SCOPE FOR USE WITHIN APP
     $scope.$routeParams = $routeParams;
