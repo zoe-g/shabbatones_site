@@ -169,8 +169,17 @@ $('body').scrollspy({
     target: '.navbar-fixed-top'
 })
 
-// Scroll to sections
+// Scroll to sections from nav
 $("nav").find("a").click(function(e) {
+    e.preventDefault();
+    var goTo = $(this).attr("href");
+    $('html, body').animate({
+        scrollTop: $(goTo).offset().top
+    });
+});
+
+// Scroll to sections from other links
+$(".tab-down-custom").find("a").click(function(e) {
     e.preventDefault();
     var goTo = $(this).attr("href");
     $('html, body').animate({
