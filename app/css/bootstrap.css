@@ -2202,7 +2202,7 @@ fieldset[disabled] .btn-info.active {
 }
 .btn-warning {
   color: #f1f1f1;
-  background-color: #f2c100;
+  background-color: #e5b400;
   border-color: #d9ad00;
 }
 .btn-warning:hover,
@@ -2234,11 +2234,11 @@ fieldset[disabled] .btn-warning:active,
 .btn-warning.disabled.active,
 .btn-warning[disabled].active,
 fieldset[disabled] .btn-warning.active {
-  background-color: #f2c100;
+  background-color: #e5b400;
   border-color: #d9ad00;
 }
 .btn-warning .badge {
-  color: #f2c100;
+  color: #e5b400;
   background-color: #f1f1f1;
 }
 .btn-danger {

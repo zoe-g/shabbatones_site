@@ -113,15 +113,15 @@ var app = angular.module('shabbatones', ['ngRoute','ngAnimate','ngTouch','ui.boo
 
   }]);
 
-  // ALUMNI SECTION - CUSTOM FILTER REQUIRED TO PAGINATE DATA
+  // ALUMNI SECTION - PAGINATION FILTER
   app.filter('pagination', function() {
     return function(input, start){
       start = +start;
-      return input.slice(start);
+      if (input !== undefined) return input.slice(start);
     };
   });
 
-
+  // DIRECTIVES
   app.directive('gallery', function(){
     return {
       restrict: 'E',
@@ -164,22 +164,13 @@ var app = angular.module('shabbatones', ['ngRoute','ngAnimate','ngTouch','ui.boo
     };
   });
 
-// Nav bar highlights as user scrolls through sections
+// HIGHLIGHT NAV BAR
 $('body').scrollspy({
     target: '.navbar-fixed-top'
 })
 
-// Scroll to sections from nav
-$("nav").find("a").click(function(e) {
-    e.preventDefault();
-    var goTo = $(this).attr("href");
-    $('html, body').animate({
-        scrollTop: $(goTo).offset().top
-    });
-});
-
-// Scroll to sections from other links
-$(".tab-down-custom").find("a").click(function(e) {
+// SCROLL TO SECTION
+$("nav, .tab-down-custom").find("a").click(function(e) {
     e.preventDefault();
     var goTo = $(this).attr("href");
     $('html, body').animate({
